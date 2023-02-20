@@ -8,7 +8,7 @@ export default class App extends Component {
     return (
       <div className='bg-[#f8f8f8]'>
         <Navbar/>
-        <News/>
+        <News pageSize={15}/>
       </div>
     )
   }
