@@ -166,19 +166,19 @@ export class News extends Component {
 
   render() {
     return (
-      <div >
+      <div className='mx-10' >
           {this.state.loading && <Spinner/>}
-        <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-10 mt-20 gap-x-10 gap-y-10 px-16 md:px-20 lg:px-40 '>
+        <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-10 mt-20 gap-x-10 gap-y-10 px-16 md:px-20 lg:px-40  h-fit'>
           { !this.state.loading && this.state.articles.map((element) => {
             return <div className='' key={element.url}>
 
-              <NewsItem title={this.getTitle(element.title)} description={element.description ? element.description.slice(0, 95) : "No Description"} newsUrl={element.url ? element.url : "/"} imageUrl={element.urlToImage ? element.urlToImage : 'https://i.insider.com/63ef547db66c280019d78597?width=1200&format=jpeg'} />
+              <NewsItem title={this.getTitle(element.title)} description={element.description ? element.description.slice(0, 95) : "No Description"} newsUrl={element.url ? element.url : "/"} imageUrl={element.urlToImage ? element.urlToImage : 'https://i.insider.com/63ef547db66c280019d78597?width=1200&format=jpeg'} author={element.author ? element.author : "Unknown"} date={element.publishedAt ? element.publishedAt : "Unknown Date"}/>
             </div>
 
           })}
         </div>
 
-        <div className='flex items-center justify-between mx-40 my-10'>
+        <div className='flex items-center justify-between mx-40 py-10'>
 
           <button type="button" className="w-28 disabled:invisible text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={this.handlePrevClick} disabled={this.state.page <= 1}>&larr; Previous</button>
           <button type="button" className="w-24 disabled:invisible text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={this.handleNextClick} disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize )}>Next &rarr;</button>
