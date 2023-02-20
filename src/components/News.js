@@ -96,31 +96,30 @@ export class News extends Component {
     }
   }
 
-  async updateNews() {
-    this.props.setProgress(10);
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=09b1caca8c0a47978deb5d0e9773c0d0&page=${this.state.page}&pageSize=${this.props.pageSize}`
+  // async updateNews() {
+  //   this.props.setProgress(10);
+  //   const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.API_KEY}&page=${this.state.page}&pageSize=${this.props.pageSize}`
 
-    this.setState({ loading: true })
+  //   this.setState({ loading: true })
 
-    let data = await fetch(url);
-    this.props.setProgress(30);
+  //   let data = await fetch(url);
+  //   this.props.setProgress(30);
 
-    let parsedData = await data.json();
-    this.props.setProgress(70);
+  //   let parsedData = await data.json();
+  //   this.props.setProgress(70);
 
-    this.setState({
-      articles: parsedData.articles,
-      totalArticles: parsedData.totalResults,
-      loading: false
-    })
-    this.props.setProgress(100);
-  }
+  //   this.setState({
+  //     articles: parsedData.articles,
+  //     totalArticles: parsedData.totalResults,
+  //     loading: false
+  //   })
+  //   this.props.setProgress(100);
+  // }
 
 
   async componentDidMount() {
     this.updateNews()
   }
-
 
   getTitle(title) {
     if (title === null) {
@@ -161,6 +160,7 @@ export class News extends Component {
 }
 
   render() {
+    // this.props.setProgress(100);
     return (
       <div className='mx-10' >
         <div className='flex flex-col mt-20 items-center justify-center space-y-10'>
@@ -170,7 +170,7 @@ export class News extends Component {
         {this.state.loading && <Spinner />}
         <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-10 mt-10 gap-x-10 gap-y-10 px-16 md:px-20 lg:px-40  h-fit'>
           {!this.state.loading && this.state.articles.map((element) => {
-            return <div className='' key={element.url}>
+            return <div className='h-fit xl:h-[40rem]' key={element.url}>
 
               <NewsItem title={this.getTitle(element.title)} description={element.description ? element.description.slice(0, 95) : "No Description"} newsUrl={element.url ? element.url : "/"} imageUrl={element.urlToImage ? element.urlToImage : 'https://i.insider.com/63ef547db66c280019d78597?width=1200&format=jpeg'} author={element.author ? element.author : "Unknown"} date={element.publishedAt ? new Date(element.publishedAt).toGMTString() : "Unknown Date"} source={element.source.name} />
             </div>
