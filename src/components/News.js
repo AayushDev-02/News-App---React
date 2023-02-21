@@ -8,7 +8,7 @@ export class News extends Component {
   static defaultProps = {
     country: 'us',
     pageSize: 15,
-    category: 'general'
+    category: 'general',
   }
 
   static propTypes = {
@@ -96,25 +96,26 @@ export class News extends Component {
     }
   }
 
-  // async updateNews() {
-  //   this.props.setProgress(10);
-  //   const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.API_KEY}&page=${this.state.page}&pageSize=${this.props.pageSize}`
 
-  //   this.setState({ loading: true })
+  async updateNews() {
+    this.props.setProgress(10);
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.API_KEY}&page=${this.state.page}&pageSize=${this.props.pageSize}`
 
-  //   let data = await fetch(url);
-  //   this.props.setProgress(30);
+    this.setState({ loading: true })
 
-  //   let parsedData = await data.json();
-  //   this.props.setProgress(70);
+    let data = await fetch(url);
+    this.props.setProgress(30);
 
-  //   this.setState({
-  //     articles: parsedData.articles,
-  //     totalArticles: parsedData.totalResults,
-  //     loading: false
-  //   })
-  //   this.props.setProgress(100);
-  // }
+    let parsedData = await data.json();
+    this.props.setProgress(70);
+
+    this.setState({
+      articles: parsedData.articles,
+      totalArticles: parsedData.totalResults,
+      loading: false
+    })
+    this.props.setProgress(100);
+  }
 
 
   async componentDidMount() {
@@ -162,13 +163,10 @@ export class News extends Component {
   render() {
     // this.props.setProgress(100);
     return (
-      <div className='mx-10' >
-        <div className='flex flex-col mt-20 items-center justify-center space-y-10'>
-          <h1 className='w-fit md:text-7xl font-extrabold text-xl'>Welcome To News App</h1>
-          <h1 className='text-4xl font-bold '>Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
-        </div>
+      <div className='mx-10 ' >
+       {window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
         {this.state.loading && <Spinner />}
-        <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-10 mt-10 gap-x-10 gap-y-10 px-16 md:px-20 lg:px-40  h-fit'>
+        <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-10 py-10 gap-x-10 gap-y-10 px-16 md:px-20 lg:px-40  h-fit'>
           {!this.state.loading && this.state.articles.map((element) => {
             return <div className='h-fit xl:h-[40rem]' key={element.url}>
 
@@ -177,7 +175,8 @@ export class News extends Component {
 
           })}
         </div>
-
+        {console.log(this.props.API_KEY)}
+          
         <div className='flex items-center justify-between mx-40 py-10'>
 
           <button type="button" className="w-28 disabled:invisible text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={this.handlePrevClick} disabled={this.state.page <= 1}>&larr; Previous</button>

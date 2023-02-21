@@ -8,17 +8,18 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import Hero from './components/Hero';
 
 export default class App extends Component {
   pageSize = 15;
 
-  API_KEY = process.env.NEWS_API_KEY;
+  API_KEY = process.env.REACT_APP_API_KEY;
 
   state = {
     progress: 30,
   }
 
-  setProgress= (progress) => {
+  setProgress = (progress) => {
     this.setState({
       progress: progress
     })
@@ -26,7 +27,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className='bg-indigo-100'>
+      <div className='bg-gradient-to-r from-[#af695c]/30 via-[#f9f4ed] to-[#af695c]/30 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black'>
         <Router>
           <LoadingBar
             color='#1a2'
@@ -34,19 +35,22 @@ export default class App extends Component {
             height={3}
           />
           <Navbar />
-
+          <div className=''>
           <Routes>
-
-            <Route exact path="/" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="general" pageSize={this.pageSize} country="us" category="general" />} />
-            <Route exact path="/business" element={<News API_KEY={this.API_KEY} setProgress= {this.setProgress} key="business" pageSize={this.pageSize} country="us" category="business" />} />
-            <Route exact path="/entertainment" element={<News API_KEY={this.API_KEY} setProgress= {this.setProgress} key="entertainment" pageSize={this.pageSize} country="us" category="entertainment" />} />
-            <Route exact path="/health" element={<News API_KEY={this.API_KEY} setProgress= {this.setProgress} key="health" pageSize={this.pageSize} country="us" category="health" />} />
-            <Route exact path="/science" element={<News API_KEY={this.API_KEY} setProgress= {this.setProgress} key="science" pageSize={this.pageSize} country="us" category="science" />} />
-            <Route exact path="/sports" element={<News API_KEY={this.API_KEY} setProgress= {this.setProgress} key="sports" pageSize={this.pageSize} country="us" category="sports" />} />
-            <Route exact path="/technology" element={<News API_KEY={this.API_KEY} setProgress= {this.setProgress} key="technology" pageSize={this.pageSize} country="us" category="technology" />} />
+            <Route exact path='/' element={<Hero/>} />
+            <Route exact path="/general" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="general" pageSize={this.pageSize} country="us" category="general" />} />
+            <Route exact path="/business" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="business" pageSize={this.pageSize} country="us" category="business" />} />
+            <Route exact path="/entertainment" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="entertainment" pageSize={this.pageSize} country="us" category="entertainment" />} />
+            <Route exact path="/health" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="health" pageSize={this.pageSize} country="us" category="health" />} />
+            <Route exact path="/science" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="science" pageSize={this.pageSize} country="us" category="science" />} />
+            <Route exact path="/sports" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="sports" pageSize={this.pageSize} country="us" category="sports" />} />
+            <Route exact path="/technology" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="technology" pageSize={this.pageSize} country="us" category="technology" />} />
           </Routes>
-
+          </div>
         </Router>
+
+
+
       </div>
     )
   }
