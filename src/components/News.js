@@ -142,7 +142,7 @@ export class News extends Component {
     this.updateNews();
 
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }   
+  }
 
 
 
@@ -158,25 +158,78 @@ export class News extends Component {
   }
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
+  }
 
   render() {
     // this.props.setProgress(100);
     return (
-      <div className='mx-10 ' >
-       {window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
-        {this.state.loading && <Spinner />}
-        <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-10 py-10 gap-x-10 gap-y-10 px-16 md:px-20 lg:px-40  h-fit'>
-          {!this.state.loading && this.state.articles.map((element) => {
-            return <div className='h-fit xl:h-[40rem]' key={element.url}>
+      <div className='mx-10 font-poppins ' >
+        <div className='mt-28'>
+          <h1 className='px-40 text-7xl '>Top {this.capitalizeFirstLetter(this.props.category)} Headlines </h1>
+        </div>
 
-              <NewsItem title={this.getTitle(element.title)} description={element.description ? element.description.slice(0, 95) : "No Description"} newsUrl={element.url ? element.url : "/"} imageUrl={element.urlToImage ? element.urlToImage : 'https://i.insider.com/63ef547db66c280019d78597?width=1200&format=jpeg'} author={element.author ? element.author : "Unknown"} date={element.publishedAt ? new Date(element.publishedAt).toGMTString() : "Unknown Date"} source={element.source.name} />
+        <div className='w-4/5 ml-40 my-20 h-1 bg-[#af695c]'></div>        
+
+        {window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
+
+        {this.state.loading && <Spinner />}
+
+        <div className='grid grid-cols-4 gap-16 px-40'>
+
+
+          {!this.state.loading && this.state.articles.slice(0, 1).map((element) => {
+            return <div className='col-span-1' key={element.url}>
+
+              <NewsItem title={this.getTitle(element.title)} description={element.description ? element.description : "No Description"} newsUrl={element.url ? element.url : "/"} imageUrl={element.urlToImage ? element.urlToImage : 'https://i.insider.com/63ef547db66c280019d78597?width=1200&format=jpeg'} author={element.author ? element.author : "Unknown"} date={element.publishedAt ? new Date(element.publishedAt).toGMTString() : "Unknown Date"} source={element.source.name} showUser={true} showButton={true} />
             </div>
 
           })}
+          {!this.state.loading && this.state.articles.slice(1, 2).map((element) => {
+            return <div className='col-span-2' key={element.url}>
+
+              <NewsItem title={this.getTitle(element.title)} description={element.description ? element.description : "No Description"} newsUrl={element.url ? element.url : "/"} imageUrl={element.urlToImage ? element.urlToImage : 'https://i.insider.com/63ef547db66c280019d78597?width=1200&format=jpeg'} author={element.author ? element.author : "Unknown"} date={element.publishedAt ? new Date(element.publishedAt).toGMTString() : "Unknown Date"} source={element.source.name} showUser={null} showButton={true} />
+            </div>
+
+          })}
+          {!this.state.loading && this.state.articles.slice(2, 3).map((element) => {
+            return <div className='col-span-1 ' key={element.url}>
+              <div className='space-y-8  '>
+                <div className=' bg-[#af695c] p-10 flex justify-between items-center font-extralight text-[#f9f4ed]'>
+                  <h2 className='text-xl '>Total Articles:</h2>
+                  <p className='text-3xl '>40{this.state.totalArticles}</p>
+                </div>
+                <div className='w-full bg-[#af695c]/50 h-1 '></div>
+
+                <NewsItem title={this.getTitle(element.title)} description={element.description ? element.description : "No Description"} newsUrl={element.url ? element.url : "/"} imageUrl={element.urlToImage ? element.urlToImage : 'https://i.insider.com/63ef547db66c280019d78597?width=1200&format=jpeg'} author={element.author ? element.author : "Unknown"} date={element.publishedAt ? new Date(element.publishedAt).toGMTString() : "Unknown Date"} source={element.source.name} showUser={true} showButton={null} />
+              </div>
+
+            </div>
+
+          })}
+
+        </div>
+
+        <div className='w-4/5 ml-40 mt-20 mb-10 h-1 bg-[#af695c]'></div>
+
+
+
+        <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-10 py-10 gap-x-10 gap-y-10 px-16 md:px-20 lg:px-40  h-fit'>
+
+
+
+          {/* write a mapping frunction to map from 3rd index tp the end */}
+          {this.state.articles.slice(3, this.state.articles.totalArticles).map((element) => {
+            return <div>
+
+              <NewsItem title={this.getTitle(element.title)} description={element.description ? element.description : "No Description"} newsUrl={element.url ? element.url : "/"} imageUrl={element.urlToImage ? element.urlToImage : 'https://i.insider.com/63ef547db66c280019d78597?width=1200&format=jpeg'} author={element.author ? element.author : "Unknown"} date={element.publishedAt ? new Date(element.publishedAt).toGMTString() : "Unknown Date"} source={element.source.name} showUser={true} showButton={true} />
+            </div>
+          })}
+
+
+
         </div>
         {console.log(this.props.API_KEY)}
-          
+
         <div className='flex items-center justify-between mx-40 py-10'>
 
           <button type="button" className="w-28 disabled:invisible text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={this.handlePrevClick} disabled={this.state.page <= 1}>&larr; Previous</button>

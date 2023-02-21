@@ -21,7 +21,7 @@ export class Category extends Component {
                     <div className='grid grid-cols-3 gap-10 items-center justify-between text-left w-full bg-[#af695c] px-40 pt-20  text-[#2a2a2a]' >
 
                         <Link to="/general">
-                            <div className='p-12 bg-gradient-to-tl from-[#af695c] to-[#f9f4ed] rounded-2xl flex  justify-between'>
+                            <div className='p-12 bg-gradient-to-tl from-[#af695c] to-[#f9f4ed] rounded-2xl flex  justify-between transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 duration-75'>
                                 <div className='space-y-2'>
                                     <h3 className='text-3xl font-semibold '>Genenral</h3>
                                     <p>Top General Headlines</p>

@@ -9,6 +9,7 @@ import {
   Route
 } from "react-router-dom";
 import Hero from './components/Hero';
+import Footer from './components/Footer';
 
 export default class App extends Component {
   pageSize = 15;
@@ -27,7 +28,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className='bg-gradient-to-r from-[#af695c]/30 via-[#f9f4ed] to-[#af695c]/30 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black'>
+      <div className='bg-gradient-to-r from-[#af695c]/30 via-[#f9f4ed] to-[#af695c]/30 scrollbar scrollbar-track-transparent scrollbar-thumb-[#af695c]'>
         <Router>
           <LoadingBar
             color='#1a2'
@@ -47,6 +48,8 @@ export default class App extends Component {
             <Route exact path="/technology" element={<News API_KEY={this.API_KEY} setProgress={this.setProgress} key="technology" pageSize={this.pageSize} country="us" category="technology" />} />
           </Routes>
           </div>
+
+          <Footer/>
         </Router>
 
 
