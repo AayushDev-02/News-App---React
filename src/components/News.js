@@ -196,7 +196,7 @@ export class News extends Component {
               <div className='space-y-8  '>
                 <div className=' bg-[#af695c] p-10 flex justify-between items-center font-extralight text-[#f9f4ed]'>
                   <h2 className='text-xl '>Total Articles:</h2>
-                  <p className='text-3xl '>40{this.state.totalArticles}</p>
+                  <p className='text-3xl '>{this.state.totalArticles}</p>
                 </div>
                 <div className='w-full bg-[#af695c]/50 h-1 '></div>
 
