@@ -1,3 +1,14 @@
+# News App 
+
+## Images
+![Hero](https://user-images.githubusercontent.com/105657470/220370523-b890143f-d530-46c9-adad-33d19eba7a3b.png)
+![Categories](https://user-images.githubusercontent.com/105657470/220370532-cdbe0c77-384c-4bf1-830a-a59298ad6723.png)
+![News](https://user-images.githubusercontent.com/105657470/220370544-6aa1d8c9-c844-40eb-ae8c-58da5d14976f.png)
+![news3](https://user-images.githubusercontent.com/105657470/220370578-0ef44291-5496-4fd0-afb8-4c13bd432162.png)
+![news2](https://user-images.githubusercontent.com/105657470/220370589-dcd37948-e0ca-47cd-a0bb-901249b15521.png)
+
+### `React, Tailwind CSS, News API, React Router Dom, React Icons`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
